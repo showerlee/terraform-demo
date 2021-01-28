@@ -1,0 +1,20 @@
+#!/bin/bash -eu
+
+cd $(dirname $0)/..
+source ./auto/set-env-var
+
+ENV=${1-'test'}
+
+display_status "Initialize terraform..."
+auto/terraform init
+
+if auto/terraform workspace new ${ENV}; then
+    display_status "Workspace '${ENV}' created!"
+fi
+
+display_status "Provision ${APP_NAME} in ${ENV} via terraform..."
+
+auto/terraform workspace select ${ENV}
+auto/terraform apply -var-file env/${ENV}.tfvars
+
+display_status "Done"
