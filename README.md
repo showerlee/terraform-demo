@@ -4,15 +4,15 @@
 
 - Optimize terraform format
 ```
-./auto/provision fmt
+./auto/terraform fmt
 ```
 
-- Provision EC2 in test env
+- Provision EC2 in test/prod env
 ```
-./auto/provision test
+./auto/provision-in-<test/prod>
 ```
 
-- Terminate EC2 in test env
+- Terminate EC2 in test/prod env
 ```
-./auto/provision destroy
+./auto/destroy-in-<test/prod>
 ```

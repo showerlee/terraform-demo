@@ -3,7 +3,8 @@
 cd $(dirname $0)/..
 source ./auto/set-env-var
 
-ENV=${1-'test'}
+ACTION=$1
+ENV=${2-'test'}
 
 display_status "Initialize terraform..."
 auto/terraform init
@@ -12,9 +13,9 @@ if auto/terraform workspace new ${ENV}; then
     display_status "Workspace '${ENV}' created!"
 fi
 
-display_status "Provision ${APP_NAME} in ${ENV} via terraform..."
+display_status "Start to ${ACTION} ${APP_NAME} in ${ENV} via terraform..."
 
 auto/terraform workspace select ${ENV}
-auto/terraform apply -var-file env/${ENV}.tfvars
+auto/terraform ${ACTION} -var-file env/${ENV}.tfvars
 
 display_status "Done"
