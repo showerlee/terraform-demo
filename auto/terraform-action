@@ -4,18 +4,25 @@ cd $(dirname $0)/..
 source ./auto/set-env-var
 
 ACTION=$1
-ENV=${2-'test'}
+OBJECT=$2
+ENV=${3-'test'}
+
+CONF_DIR="./terraform/${OBJECT}"
 
 display_status "Initialize terraform..."
-auto/terraform init
 
-if auto/terraform workspace new ${ENV}; then
-    display_status "Workspace '${ENV}' created!"
-fi
+auto/terraform -chdir=${CONF_DIR} init -reconfigure
 
-display_status "Start to ${ACTION} ${APP_NAME} in ${ENV} via terraform..."
+# Available while using IAM user authentication rather than SSO
+# if auto/terraform -chdir=${CONF_DIR} workspace new ${ENV}; then
+#     display_status "Workspace '${ENV}' created!"
+# fi
 
-auto/terraform workspace select ${ENV}
-auto/terraform ${ACTION} -var-file env/${ENV}.tfvars
+display_status "Start to ${ACTION} ${OBJECT} in ${ENV} via terraform..."
+
+# auto/terraform -chdir=${CONF_DIR} workspace select ${ENV}
+
+auto/terraform -chdir=${CONF_DIR} ${ACTION} \
+-var-file env/${ENV}.tfvars
 
 display_status "Done"

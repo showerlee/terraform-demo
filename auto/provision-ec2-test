@@ -2,4 +2,4 @@
 
 cd $(dirname $0)/..
 
-auto/terraform-action destroy test
+auto/terraform-action apply ec2 test

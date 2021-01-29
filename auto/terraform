@@ -10,10 +10,9 @@ mkdir -p ~/.terraform.d/plugin-cache
 
 docker run -it --workdir /cwd \
   --volume $PWD:/cwd \
-  --volume $PWD/.terraform:/cwd/.terraform \
-  --volume $HOME/.aws:/root/.aws \
   --volume $HOME/.terraformrc:/root/.terraformrc \
   --volume $HOME/.terraform.d:/root/.terraform.d \
+  --volume $HOME/.aws:/root/.aws \
   --env AWS_ACCESS_KEY_ID \
   --env AWS_SECRET_ACCESS_KEY \
   --env AWS_SESSION_TOKEN \

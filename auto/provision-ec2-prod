@@ -2,4 +2,4 @@
 
 cd $(dirname $0)/..
 
-auto/terraform-action apply test
+auto/terraform-action apply ec2 prod
