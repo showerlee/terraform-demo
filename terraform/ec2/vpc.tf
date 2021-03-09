@@ -2,7 +2,7 @@ resource "aws_vpc" "tf_demo_vpc" {
   cidr_block = var.vpc.cidr
 
   tags = {
-    Name = "${var.app_name}_vpc"
+    Name = "${var.app_name}-vpc"
   }
 }
 
@@ -12,7 +12,7 @@ resource "aws_subnet" "tf_demo_subnet" {
   availability_zone = var.availability_zone
 
   tags = {
-    Name = "${var.app_name}_subnet"
+    Name = "${var.app_name}-subnet"
   }
 }
 
