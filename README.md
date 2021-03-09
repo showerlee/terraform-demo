@@ -11,12 +11,12 @@ This repo is intent to give us a better understanding regarding how to structure
 
 - Provision EC2 in test/prod env
 ```
-./auto/provision-in-<test/prod>
+./auto/provision-ec2-<test/prod>
 ```
 
 - Terminate EC2 in test/prod env
 ```
-./auto/destroy-in-<test/prod>
+./auto/destroy-ec2-<test/prod>
 ```
 
 ## Notice

@@ -14,7 +14,7 @@ resource "aws_instance" "tf_demo_ec2" {
   }
 
   tags = {
-    Name = "${var.app_name}_ec2"
+    Name = "${var.app_name}-ec2"
   }
   depends_on = [aws_vpc.tf_demo_vpc, aws_subnet.tf_demo_subnet, aws_security_group.tf_demo_sg]
 }
