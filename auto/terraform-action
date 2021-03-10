@@ -11,7 +11,9 @@ CONF_DIR="./terraform/${OBJECT}"
 
 display_status "Initialize terraform..."
 
-auto/terraform -chdir=${CONF_DIR} init -reconfigure
+# The -reconfigure option disregards any existing configuration, preventing migration of any existing state
+# Use the -upgrade option if you want Terraform to ignore the dependency lock file and consider installing newer versions based on versions.tf
+auto/terraform -chdir=${CONF_DIR} init -reconfigure -upgrade
 
 # Available while using IAM user authentication rather than SSO
 # if auto/terraform -chdir=${CONF_DIR} workspace new ${ENV}; then

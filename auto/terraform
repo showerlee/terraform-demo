@@ -4,17 +4,24 @@ cd $(dirname $0)/..
 
 TERRAFORM_IMAGE="hashicorp/terraform"
 TERRAFORM_HASH="0.14.3@sha256:7b1e232f564132b949b812ee138249b5398bedf3c6fab42b468d4ec8acf5343c"
+TERRAFORM_CACHE="terraform-cache"
 
-mkdir -p ~/.terraform.d/plugin-cache
-[ ! -f ~/.terraformrc ] && echo -e 'plugin_cache_dir   = "$HOME/.terraform.d/plugin-cache"' > ~/.terraformrc
+# mkdir -p ~/.terraform.d/plugin-cache
+# [ ! -f ~/.terraformrc ] && echo -e 'plugin_cache_dir   = "$HOME/.terraform.d/plugin-cache"' > ~/.terraformrc
 
-docker run -it --workdir /cwd \
+if [ $(docker volume ls | grep ${TERRAFORM_CACHE} | wc -l) == 0 ];then
+  docker volume create ${TERRAFORM_CACHE}
+fi
+
+export TF_PLUGIN_CACHE_DIR=/tmp/.terraform
+
+docker run -it --rm --workdir /cwd \
   --volume $PWD:/cwd \
-  --volume $HOME/.terraformrc:/root/.terraformrc \
-  --volume $HOME/.terraform.d:/root/.terraform.d \
+  --volume terraform-cache:/tmp/.terraform \
   --volume $HOME/.aws:/root/.aws \
   --env AWS_ACCESS_KEY_ID \
   --env AWS_SECRET_ACCESS_KEY \
   --env AWS_SESSION_TOKEN \
   --env AWS_DEFAULT_REGION \
+  --env TF_PLUGIN_CACHE_DIR \
   ${TERRAFORM_IMAGE}:${TERRAFORM_HASH} "$@"
