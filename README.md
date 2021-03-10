@@ -21,7 +21,7 @@ This repo is intent to give us a better understanding regarding how to structure
 
 ## Notice
 
-Uncomment the following in [auto/terraform-action](auto/terraform-action) and `cp -rf provider.tf.bak provider.tf` if you are using IAM user credentials in `~/.aws/credentials` to authenticate your AWS account.
+- Uncomment the following in [auto/terraform-action](auto/terraform-action) and `cp -rf provider.tf.bak provider.tf` if you are using IAM user credentials in `~/.aws/credentials` to authenticate your AWS account.
 
 ```bash
 # auto/terraform-action
