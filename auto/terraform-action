@@ -20,6 +20,13 @@ auto/terraform -chdir=${CONF_DIR} init -reconfigure -upgrade
 #     display_status "Workspace '${ENV}' created!"
 # fi
 
+[ ! -d ${CONF_DIR}/tmp ] && mkdir ${CONF_DIR}/tmp
+
+if [ ! -f ${CONF_DIR}/tmp/id_rsa ]; then
+  ssh-keygen -t rsa -P "" -f ${CONF_DIR}/tmp/id_rsa <<<y 2>&1 >/dev/null
+  chmod 400 ${CONF_DIR}/tmp/id_rsa
+fi
+
 display_status "Start to ${ACTION} ${OBJECT} in ${ENV} via terraform..."
 
 # auto/terraform -chdir=${CONF_DIR} workspace select ${ENV}
