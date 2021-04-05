@@ -1,6 +1,6 @@
 app_name = "terraform-demo"
 
-availability_zone = "ap-northeast-2a"
+availability_zone = "ap-southeast-1a"
 
 vpc = {
     cidr: "192.168.0.0/16"
