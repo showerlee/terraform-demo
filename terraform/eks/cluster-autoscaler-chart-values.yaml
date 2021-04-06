@@ -10,5 +10,5 @@ rbac:
       eks.amazonaws.com/role-arn: "arn:aws:iam::494526681395:role/cluster-autoscaler"
 
 autoDiscovery:
-  clusterName: test-eks-irsa
+  clusterName: terraform-demo-eks-cluster
   enabled: true

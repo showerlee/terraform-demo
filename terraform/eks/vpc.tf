@@ -14,12 +14,15 @@ module "vpc" {
   public_subnet_tags = {
     "kubernetes.io/cluster/${local.app_name}" = "shared"
     "kubernetes.io/role/elb"                      = "1"
-    Owner = "Zhenyu.li"
   }
 
   private_subnet_tags = {
     "kubernetes.io/cluster/${local.app_name}" = "shared"
     "kubernetes.io/role/internal-elb"             = "1"
+  }
+
+  tags = {
+    Environment = "test"
     Owner = "Zhenyu.li"
   }
 }

@@ -6,6 +6,11 @@ module "iam_assumable_role_admin" {
   provider_url                  = replace(module.eks.cluster_oidc_issuer_url, "https://", "")
   role_policy_arns              = [aws_iam_policy.cluster_autoscaler.arn]
   oidc_fully_qualified_subjects = ["system:serviceaccount:${local.k8s_service_account_namespace}:${local.k8s_service_account_name}"]
+
+  tags = {
+    Environment = "test"
+    Owner = "Zhenyu.li"
+  }
 }
 
 resource "aws_iam_policy" "cluster_autoscaler" {
