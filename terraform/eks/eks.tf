@@ -30,6 +30,18 @@ module "eks" {
       asg_desired_capacity = 1
       public_ip            = true
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
+      tags = [
+        {
+          "key"                 = "k8s.io/cluster-autoscaler/enabled"
+          "propagate_at_launch" = "false"
+          "value"               = "true"
+        },
+        {
+          "key"                 = "k8s.io/cluster-autoscaler/${local.app_name}-eks-cluster"
+          "propagate_at_launch" = "false"
+          "value"               = "true"
+        }
+      ]
     },
     {
       name                 = "worker-group-2"
@@ -37,6 +49,18 @@ module "eks" {
       asg_desired_capacity = 1
       public_ip            = true
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
+      tags = [
+        {
+          "key"                 = "k8s.io/cluster-autoscaler/enabled"
+          "propagate_at_launch" = "false"
+          "value"               = "true"
+        },
+        {
+          "key"                 = "k8s.io/cluster-autoscaler/${local.app_name}-eks-cluster"
+          "propagate_at_launch" = "false"
+          "value"               = "true"
+        }
+      ]
     },
   ]
 
