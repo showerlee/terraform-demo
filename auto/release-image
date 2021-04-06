@@ -1,0 +1,30 @@
+#! /bin/bash -e
+
+cd $(dirname $0)/..
+source ./auto/set-env-var
+
+export NGINX="nginx-example"  
+export DOCKER_REGISTRY="showerlee"
+export NGINX_IMAGE="${DOCKER_REGISTRY}/${NGINX}"
+
+export BUILD_INTITY=${1-'nginx'}
+export GIT_HASH=$(git rev-parse --short HEAD)
+export VERSION=${GIT_HASH}-$(date +'%Y%m%d%H%M')
+
+display_status "[INFO] Build and Release Image"
+auto/build ${BUILD_INTITY} ${VERSION} 
+
+DOCKER_IMAGE=$(echo "${BUILD_INTITY}_IMAGE" | tr '/a-z/' '/A-Z/' | tr '-' '_')
+
+# Release image to new registry
+docker push ${!DOCKER_IMAGE}:${VERSION}
+docker tag ${!DOCKER_IMAGE}:${VERSION} ${!DOCKER_IMAGE}:latest
+docker push ${!DOCKER_IMAGE}:latest
+
+# Save app image reference
+mkdir -pv artifacts
+DIGEST=$(docker pull ${!DOCKER_IMAGE}:${VERSION} | sed -n 's/^Digest: // p')
+IMAGE="${!DOCKER_IMAGE}:${VERSION}@${DIGEST}"
+IMAGE_TAG="${VERSION}@${DIGEST}"
+echo "$IMAGE_TAG" > artifacts/docker-image-released.txt
+echo "Released as: $IMAGE"

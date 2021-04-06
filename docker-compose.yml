@@ -1,0 +1,7 @@
+version: "3.6"
+
+services:
+  nginx:
+    image: ${NGINX_IMAGE}:${VERSION}
+    build:
+      context: ./terraform/eks/example/

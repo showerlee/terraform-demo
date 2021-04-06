@@ -1,0 +1,10 @@
+#! /bin/bash -e
+
+cd $(dirname $0)/..
+
+BUILD_INTITY=${1:-'nginx'}
+export VERSION=${2:-'dev'}
+
+docker-compose down --remove-orphans
+
+docker-compose build ${BUILD_INTITY}
