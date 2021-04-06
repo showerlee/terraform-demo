@@ -7,4 +7,9 @@ map_roles = [
       username = "toc-admin"
       groups   = ["system:masters"]
     },
+    {
+      rolearn  = "arn:aws:iam::494526681395:role/toc-poweruser"
+      username = "toc-poweruser"
+      groups   = ["system:masters"]
+    },
 ]
