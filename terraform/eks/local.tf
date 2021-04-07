@@ -1,5 +1,7 @@
 locals {
   app_name = "terraform-demo"
-  k8s_service_account_namespace = "kube-system"
-  k8s_service_account_name      = "cluster-autoscaler-aws-cluster-autoscaler-chart"
+  autoscaler_sa_namespace = "kube-system"
+  autoscaler_sa_name      = "cluster-autoscaler-aws-cluster-autoscaler-chart"
+  example_sa_namespace    = "default"
+  example_sa_name         = "sa-for-pod-assume-role"
 }
