@@ -41,3 +41,22 @@ cli_pager=
 ```
 
 Otherwise, continue the current setting which applied SSO authentication.
+
+- Can not totally destroy eks cluster, pop up `Error: Unauthorized`
+
+```
+module.eks.aws_iam_role_policy_attachment.workers_AmazonEC2ContainerRegistryReadOnly[0]: Destruction complete after 2s
+
+Error: Unauthorized
+```
+
+```
+cd terraform/eks/
+terraform state rm 'module.eks.kubernetes_config_map.aws_auth[0]'
+cd ../../
+auto/destroy-eks-test
+```
+
+- Worker groups or node groups?
+
+https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/docs/faq.md#what-is-the-difference-between-node_groups-and-worker_groups
