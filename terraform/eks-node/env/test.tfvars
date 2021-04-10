@@ -12,4 +12,9 @@ map_roles = [
       username = "toc-poweruser"
       groups   = ["system:masters"]
     },
+    {
+      rolearn  = "arn:aws:iam::494526681395:role/jenkins-agent-pod-role"
+      username = "jenkins-agent-pod-role"
+      groups   = ["system:masters"]
+    }
 ]
