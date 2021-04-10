@@ -1,4 +1,4 @@
 .terraform/
 tmp/
-kubeconfig_terraform*
+kubeconfig*
 artifacts/

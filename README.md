@@ -51,10 +51,10 @@ Error: Unauthorized
 ```
 
 ```
-cd terraform/eks/
+cd terraform/eks-<worker/node>/
 terraform state rm 'module.eks.kubernetes_config_map.aws_auth[0]'
 cd ../../
-auto/destroy-eks-test
+auto/destroy-eks-<worker/node>-test
 ```
 
 - Worker groups or node groups?
