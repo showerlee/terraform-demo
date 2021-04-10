@@ -1,4 +1,4 @@
 .terraform/
 tmp/
-kubeconfig_terraform-demo-eks-cluster
+kubeconfig_terraform*
 artifacts/
