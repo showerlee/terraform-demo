@@ -66,3 +66,9 @@ https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/docs/faq.
 ```
 aws eks --region <region-code> update-kubeconfig --name <cluster_name>
 ```
+
+- Check aws-auth ConfigMap for RBAC access to IAM users and roles
+
+```
+kubectl describe configmap -n kube-system aws-auth
+```
