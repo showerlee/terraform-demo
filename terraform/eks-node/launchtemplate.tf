@@ -38,6 +38,7 @@ resource "aws_launch_template" "default" {
   }
 
   instance_type = var.instance_type
+  key_name = aws_key_pair.lt_key_pair.key_name
 
   monitoring {
     enabled = true
