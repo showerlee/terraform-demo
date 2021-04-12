@@ -60,3 +60,9 @@ auto/destroy-eks-<worker/node>-test
 - Worker groups or node groups?
 
 https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/docs/faq.md#what-is-the-difference-between-node_groups-and-worker_groups
+
+- Use the AWS CLI update-kubeconfig to update eks cluster `kubeconfig`
+
+```
+aws eks --region <region-code> update-kubeconfig --name <cluster_name>
+```
