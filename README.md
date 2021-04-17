@@ -72,3 +72,11 @@ aws eks --region <region-code> update-kubeconfig --name <cluster_name>
 ```
 kubectl describe configmap -n kube-system aws-auth
 ```
+
+- SSH eks node via pod rather than setup a bastion
+
+```
+kubectl apply -f terraform/eks-node/example/pod-assume-role.yaml
+NODE_IP=$(kubectl get nodes --selector=<node_label> -o jsonpath='{$.items[*].status.addresses[?(@.type=="InternalIP")].address}')
+kubectl exec -it nginx-demo -- ssh -i ~/.ssh/id_rsa ec2-user@$NODE_IP
+```
