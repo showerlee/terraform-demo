@@ -42,6 +42,21 @@ module "eks" {
     }
   }
 
+  worker_groups_launch_template = [
+    {
+      name                    = "example-spot-"
+      override_instance_types = ["t3.medium"]
+      root_volume_size        = 100
+      root_volume_type        = "gp2"
+      spot_instance_pools     = 1
+      asg_max_size            = 3
+      asg_desired_capacity    = 1
+      kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=spot"
+      public_ip               = false
+      key_name                = aws_key_pair.lt_key_pair.key_name
+    },
+  ]
+
   map_roles                            = var.map_roles
   # map_users                            = var.map_users
   # map_accounts                         = var.map_accounts
