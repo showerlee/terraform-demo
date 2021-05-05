@@ -126,3 +126,36 @@ This repo is intent to give us a better understanding regarding how to structure
     NODE_IP=$(kubectl get nodes --selector=<node_label> -o jsonpath='{$.items[*].status.addresses[?(@.type=="InternalIP")].address}')
     kubectl exec -it nginx-demo -- ssh -i ~/.ssh/id_rsa ec2-user@$NODE_IP
     ```
+
+- `kubectl` could not grab eks metrics
+
+    ```
+    $ kubectl top nodes
+    error: Metrics API not available
+    ```
+
+    The Kubernetes Metrics Server is an aggregator of resource usage data in your cluster, and it is not deployed by default in Amazon EKS clusters
+
+    - Deploy the Metrics Server with the following command:
+
+        ```
+        kubectl apply -f ./k8s/metrics-server/components.yml
+        ```
+
+    - Verify metrics-server deployment
+
+        ```
+        $ kubectl get deployment metrics-server -n kube-system
+        NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+        metrics-server   1/1     1            1           6m
+        ```
+    - Check node metrics
+
+        ```
+        $ kubectl top nodes
+        NAME                                               CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
+        ip-192-168-1-xxx.ap-southeast-x.compute.internal   183m         9%     2449Mi          73%
+        ip-192-168-1-xxx.ap-southeast-x.compute.internal   177m         9%     2305Mi          68%
+        ```
+
+    More details: https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html
