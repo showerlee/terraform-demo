@@ -48,10 +48,10 @@ module "eks" {
       override_instance_types = ["t3.medium", "t3a.medium", "m3.medium"]
       root_volume_size        = 100
       root_volume_type        = "gp2"
-      spot_instance_pools     = 2
-      asg_min_size            = 2
-      asg_max_size            = 2
-      asg_desired_capacity    = 2
+      spot_instance_pools     = 3
+      asg_min_size            = 3
+      asg_max_size            = 3
+      asg_desired_capacity    = 3
       kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=spot"
       public_ip               = false
       key_name                = aws_key_pair.lt_key_pair.key_name
