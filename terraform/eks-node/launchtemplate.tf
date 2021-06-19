@@ -38,7 +38,7 @@ resource "aws_launch_template" "default" {
   }
 
   instance_type = var.instance_type
-  key_name = aws_key_pair.lt_key_pair.key_name
+  key_name      = aws_key_pair.lt_key_pair.key_name
 
   monitoring {
     enabled = true
@@ -69,7 +69,7 @@ resource "aws_launch_template" "default" {
 
     tags = {
       CustomTag = "EKS example"
-      Owner = "Zhenyu.li"
+      Owner     = "Zhenyu.li"
     }
   }
 
@@ -79,14 +79,14 @@ resource "aws_launch_template" "default" {
 
     tags = {
       CustomTag = "EKS example"
-      Owner = "Zhenyu.li"
+      Owner     = "Zhenyu.li"
     }
   }
 
   # Tag the LT itself
   tags = {
     CustomTag = "EKS example"
-    Owner = "Zhenyu.li"
+    Owner     = "Zhenyu.li"
   }
 
   lifecycle {

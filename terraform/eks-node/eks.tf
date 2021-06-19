@@ -19,11 +19,11 @@ module "eks" {
   enable_irsa     = true
 
   cluster_endpoint_private_access = true
-  cluster_endpoint_public_access = true
+  cluster_endpoint_public_access  = true
 
   tags = {
     Environment = "test"
-    Owner = "Zhenyu.li"
+    Owner       = "Zhenyu.li"
   }
 
   # node_groups = {
@@ -58,7 +58,7 @@ module "eks" {
     },
   ]
 
-  map_roles                            = var.map_roles
+  map_roles = var.map_roles
   # map_users                            = var.map_users
   # map_accounts                         = var.map_accounts
 }

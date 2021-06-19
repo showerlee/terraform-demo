@@ -19,19 +19,19 @@ module "eks" {
   enable_irsa     = true
 
   cluster_endpoint_private_access = true
-  cluster_endpoint_public_access = true
+  cluster_endpoint_public_access  = true
 
   tags = {
     Environment = "test"
-    Owner = "Zhenyu.li"
+    Owner       = "Zhenyu.li"
   }
 
   worker_groups_launch_template = [
     {
-      name                 = "worker-group-1"
-      instance_type        = "t3.small"
-      asg_desired_capacity = 1
-      public_ip            = true
+      name                          = "worker-group-1"
+      instance_type                 = "t3.small"
+      asg_desired_capacity          = 1
+      public_ip                     = true
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
       tags = [
         {
@@ -47,10 +47,10 @@ module "eks" {
       ]
     },
     {
-      name                 = "worker-group-2"
-      instance_type        = "t3.medium"
-      asg_desired_capacity = 1
-      public_ip            = true
+      name                          = "worker-group-2"
+      instance_type                 = "t3.medium"
+      asg_desired_capacity          = 1
+      public_ip                     = true
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
       tags = [
         {

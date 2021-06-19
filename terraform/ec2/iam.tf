@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "tf_demo_policy_document" {
 }
 
 resource "aws_iam_instance_profile" "tf_demo_profile" {
-  name = "tf_demo_profile"
-  role = aws_iam_role.tf_demo_role.name
+  name       = "tf_demo_profile"
+  role       = aws_iam_role.tf_demo_role.name
   depends_on = [aws_iam_role.tf_demo_role]
 }

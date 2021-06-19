@@ -47,8 +47,8 @@ data "aws_iam_policy_document" "cluster_autoscaler" {
 }
 
 resource "aws_iam_policy" "tf_demo_pod_policy" {
-  name_prefix        = "${local.app_name}-pod-role"
-  policy             = data.aws_iam_policy_document.tf_demo_pod_policy.json
+  name_prefix = "${local.app_name}-pod-role"
+  policy      = data.aws_iam_policy_document.tf_demo_pod_policy.json
 }
 
 data "aws_iam_policy_document" "tf_demo_pod_policy" {

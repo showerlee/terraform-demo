@@ -9,7 +9,7 @@ module "iam_assumable_role_admin_autoscaler" {
 
   tags = {
     Environment = "test"
-    Owner = "Zhenyu.li"
+    Owner       = "Zhenyu.li"
   }
 }
 
@@ -24,6 +24,6 @@ module "iam_assumable_role_admin_example" {
 
   tags = {
     Environment = "test"
-    Owner = "Zhenyu.li"
+    Owner       = "Zhenyu.li"
   }
 }

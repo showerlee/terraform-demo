@@ -1,6 +1,6 @@
 resource "aws_iam_policy" "tf_demo_pod_policy" {
-  name_prefix        = "${local.app_name}-pod-role"
-  policy             = data.aws_iam_policy_document.tf_demo_pod_policy.json
+  name_prefix = "${local.app_name}-pod-role"
+  policy      = data.aws_iam_policy_document.tf_demo_pod_policy.json
 }
 
 data "aws_iam_policy_document" "tf_demo_pod_policy" {
@@ -18,8 +18,8 @@ data "aws_iam_policy_document" "tf_demo_pod_policy" {
 }
 
 resource "aws_iam_policy" "jenkins_agent_pod_policy" {
-  name_prefix        = "jenkins-agent-pod-role"
-  policy             = data.aws_iam_policy_document.jenkins_agent_pod_policy.json
+  name_prefix = "jenkins-agent-pod-role"
+  policy      = data.aws_iam_policy_document.jenkins_agent_pod_policy.json
 }
 
 data "aws_iam_policy_document" "jenkins_agent_pod_policy" {

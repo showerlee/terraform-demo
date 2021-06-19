@@ -18,6 +18,6 @@ resource "aws_security_group" "lt_security_group" {
 
   tags = {
     Environment = "test"
-    Owner = "Zhenyu.li"
+    Owner       = "Zhenyu.li"
   }
 }
