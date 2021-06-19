@@ -1,0 +1,12 @@
+#!/bin/bash -eu
+
+cd $(dirname $0)/..
+
+ACTION="fmt"
+OBJECT=$1
+
+CONF_DIR="./terraform/${OBJECT}"
+
+auto/terraform -chdir=${CONF_DIR} \
+               ${ACTION} \
+              -check=false -write=true -diff=true
