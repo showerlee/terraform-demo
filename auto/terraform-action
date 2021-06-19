@@ -6,6 +6,7 @@ source ./auto/set-env-var
 ACTION=$1
 OBJECT=$2
 ENV=${3-'test'}
+VAR_FILE=""
 
 CONF_DIR="./terraform/${OBJECT}"
 
@@ -31,7 +32,12 @@ display_status "Start to ${ACTION} ${OBJECT} in ${ENV} via terraform..."
 
 # auto/terraform -chdir=${CONF_DIR} workspace select ${ENV}
 
-auto/terraform -chdir=${CONF_DIR} ${ACTION} \
--var-file env/${ENV}.tfvars
+if [ ${ACTION} != "validate" ]; then
+  VAR_FILE="-var-file env/${ENV}.tfvars"
+fi
+
+auto/terraform -chdir=${CONF_DIR} \
+               ${ACTION} \
+               ${VAR_FILE}
 
 display_status "Done"

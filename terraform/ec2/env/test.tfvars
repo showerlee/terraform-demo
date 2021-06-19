@@ -12,7 +12,7 @@ subnet = {
 
 ec2 = {
     instance_count: 1
-    ami: "ami-09282971cf2faa4c9"
+    ami: "ami-0be2849566d2d8113"
     instance_type: "t2.micro"
     key_name: "ops-interview-ap-ne-2"
     volume_size: 8

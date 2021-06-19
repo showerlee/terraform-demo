@@ -3,7 +3,7 @@
 cd $(dirname $0)/..
 
 TERRAFORM_IMAGE="hashicorp/terraform"
-TERRAFORM_HASH="0.14.3@sha256:7b1e232f564132b949b812ee138249b5398bedf3c6fab42b468d4ec8acf5343c"
+TERRAFORM_HASH="1.0.0@sha256:6dafbe34b7c18d189ff18e3dfb7cd5fc4144a2714eb2bc7b6dd9352455e8848a"
 TERRAFORM_CACHE="terraform-cache"
 
 # mkdir -p ~/.terraform.d/plugin-cache
