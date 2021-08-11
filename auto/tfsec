@@ -1,0 +1,10 @@
+#!/bin/bash -eu
+
+cd $(dirname $0)/..
+
+TFSEC_IMAGE="tfsec/tfsec"
+TFSEC_HASH="v0.57@sha256:037508afc91f01ecc2c9b4a3baee61c493fd097f3d86a46ed980d1bc3aeff823"
+
+docker run -it --rm --workdir /cwd \
+  --volume $PWD:/cwd \
+  ${TFSEC_IMAGE}:${TFSEC_HASH} "$@"
