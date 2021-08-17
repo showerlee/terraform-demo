@@ -1,0 +1,14 @@
+#!/bin/bash -eu
+
+cd $(dirname $0)/..
+
+TF_BASE="terraform"
+
+TF_RESOURCES=("${TF_BASE}/ec2" "${TF_BASE}/eks-node" "${TF_BASE}/eks-worker")
+
+auto/tflint --init
+
+for res in "${TF_RESOURCES[@]}";
+do
+  auto/tflint --config .tflint.hcl $res
+done

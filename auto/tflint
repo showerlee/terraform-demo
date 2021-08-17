@@ -1,0 +1,16 @@
+#!/bin/bash -eu
+
+cd $(dirname $0)/..
+
+TFLINT_IMAGE="ghcr.io/terraform-linters/tflint-bundle"
+TFLINT_HASH="v0.31.0@sha256:c40451f6739d53262ac536c6605d3b0045cda3957da165493afcf95a111880f1"
+TFLINT_CACHE="tflint-cache"
+
+if [ $(docker volume ls | grep -c ${TFLINT_CACHE}) == 0 ];then
+  docker volume create ${TFLINT_CACHE}
+fi
+
+docker run -it --rm --workdir /cwd \
+  --volume $PWD:/cwd \
+  --volume tflint-cache:/root/.tflint.d \
+  ${TFLINT_IMAGE}:${TFLINT_HASH} "$@"
